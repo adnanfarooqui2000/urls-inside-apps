@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render,redirect
+from .models import Student
 # Create your views here.
 def home(response):
     # return HttpResponse("<h1 style='color:red'>Welcome</h1>")
     data={
-        "name":"Neha",
-        "age":20,
-        "sub":"Django"
+        "name":"Adnan Farooqui",
+        "age":23,
+        "sub":"Django Python"
     }
     return JsonResponse(data)
 
@@ -25,4 +26,6 @@ def registerdata(request):
     phone=request.POST.get("phone")
     password=request.POST.get("password")
     re_password=request.POST.get("re_password")
-    print(name,email,phone,password,re_password)
+    # print(name,email,phone,password,re_password)
+    Student.objects.create(Name=name,Email=email,Contect=phone,Password=password,Re_Password=re_password)
+    print("data filled into table")
